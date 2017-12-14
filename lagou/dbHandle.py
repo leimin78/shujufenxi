@@ -1,4 +1,4 @@
-###数据库操作
+###数据库操作封装
 
 import pymysql
 import datetime
@@ -13,18 +13,26 @@ class dbHandle:
 
     def query_db(self, query):
         #执行语句,获取数据
-        print(query)
-        self.cur.execute(query)
-        self.datas = self.cur.fetchall()
-        return self.datas
+        try:
+            self.cur.execute(query)
+            self.datas = self.cur.fetchall()
+            return self.datas
+        except Exception as e:
+            print(e.args)
 
     def delete_db(self,delsql):
-        self.cur.execute(delsql)
-        self.conn.commit()
+        try:
+            self.cur.execute(delsql)
+            self.conn.commit()
+        except Exception as e:
+            print(e.args)
 
     def insert_db(self,insertsql):
-        self.cur.execute(insertsql)
-        self.conn.commit()
+        try:
+            self.cur.execute(insertsql)
+            self.conn.commit()
+        except Exception as e:
+            print(e.args)
 
     def __del__(self):
         self.conn.close()
