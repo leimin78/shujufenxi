@@ -1,0 +1,53 @@
+<html>
+<head>
+    <title>可视化展示</title>
+    <script src="https://unpkg.com/echarts@3.5.3/dist/echarts.js"></script>
+</head>
+
+<body>
+<div id="cpu" align="center" style="width: 100%;height:100%;"></div>
+<script type="text/javascript">
+        var category_arr = new Array();
+        var count_arr = new Array();
+        {% for data in datas %}
+        category_arr.push("{{data[0]}}");
+        count_arr.push({name:"{{data[0]}}", value:"{{data[1]}}"})
+        {% endfor %}
+    // 基于准备好的dom，初始化echarts实例
+    var myChartCpu = echarts.init(document.getElementById('cpu'), 'dark');
+    var option = {
+    title : {
+        text: '同名数量统计',
+        subtext: '纯属虚构',
+        x:'right'
+    },
+    tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross',
+                label: {
+                    backgroundColor: '#6a7985'
+                }
+            }
+        },
+    series : [
+        {
+            name: '姓名',
+            type: 'pie',
+            radius : '30%',
+            center: ['50%', '50%'],
+            data: count_arr,
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};
+    myChartCpu.setOption(option);
+</script>
+</body>
+</html>

@@ -27,6 +27,13 @@ class dbHandle:
         except Exception as e:
             print(e.args)
 
+    def update_db(self,updatesql):
+        try:
+            self.cur.execute(updatesql)
+            self.conn.commit()
+        except Exception as e:
+            print(e.args)
+
     def insert_db(self,insertsql):
         try:
             self.cur.execute(insertsql)

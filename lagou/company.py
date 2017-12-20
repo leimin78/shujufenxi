@@ -95,7 +95,6 @@ class lagouCompany:
                 proxy = self.get_proxy()
                 print("proxy:{0}".format(proxy))
                 i = randint(0,19)
-                time.sleep(2)
                 page_text = self.s.post(self.post_url, postdata,
                                         proxies={"https": "https://{0}".format(proxy[i])}, timeout=30)
                 page_dict = json.loads(page_text.text)
@@ -110,7 +109,7 @@ class lagouCompany:
                 if(e.args[0] == 'list index out of range'):
                     break
                 retry_count -= 1
-                time.sleep(2)
+                time.sleep(1)
 
     # 获取分类数据
     def get_category(self):
@@ -126,7 +125,7 @@ if __name__ == '__main__':
     categories = lagou_company.get_category()
 
     # 获取各分类下所有公司信息
-    for category in categories[199:]:
+    for category in categories:
 
         # 获取接口页数
 
