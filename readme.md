@@ -42,3 +42,5 @@ create table position_detail
     positionText varchar(1000),
     caregory
 )
+
+项目分析文章--http://www.jianshu.com/p/83dea1b4aa27

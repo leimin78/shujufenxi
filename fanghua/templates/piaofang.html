@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>票房数据</title>
+    <script src="https://unpkg.com/echarts@3.5.3/dist/echarts.js"></script>
+</head>
+<body>
+<div id="salary" align="center" style="width: 100%;height:500%;"></div>
+<script type="text/javascript">
+
+    var mysalary = echarts.init(document.getElementById('salary'), 'dark');
+    var option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            crossStyle: {
+                color: '#999'
+            }
+        }
+    },
+    toolbox: {
+        feature: {
+            dataView: {show: true, readOnly: false},
+            magicType: {show: true, type: ['line', 'bar']},
+            restore: {show: true},
+            saveAsImage: {show: true}
+        }
+    },
+    legend: {
+        data:['芳华','妖猫传']
+    },
+    xAxis: [
+        {
+            type: 'category',
+            //data: ['2017/12/15','2017/12/16','2017/12/17','2017/12/18','2017/12/19','2017/12/20','2017/12/21','2017/12/22','2017/12/23','2017/12/24','2017/12/25','2017/12/26'],
+            data: ['12/15','12/16','12/17','12/18','12/19','12/20','12/21','12/22','12/23','12/24','12/25','12/26'],
+            axisPointer: {
+                type: 'shadow'
+            }
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value',
+            name: '当日票房',
+            min: 0,
+            max: 2,
+            interval: 0.5,
+            axisLabel: {
+                formatter: '{value} 亿'
+            }
+        }
+    ],
+    series: [
+        {
+            name:'芳华',
+            type:'bar',
+            data:[1.01, 1.0718, 1.1015, 0.6635, 0.6541, 0.6359, 0.597, 0.4465, 1.0095, 1.0772, 0.5970, 0.4069]
+        },
+        {
+            name:'妖猫传',
+            type:'bar',
+            data:[0, 0, 0, 0, 0, 0, 0, 0.7403, 0.8714, 0.8145, 0.4455, 0.2756]
+        }
+    ]
+};
+
+
+    mysalary.setOption(option);
+
+</script>
+
+</body>
+</html>
